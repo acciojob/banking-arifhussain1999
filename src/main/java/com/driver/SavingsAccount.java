@@ -24,16 +24,26 @@ if(amount>maxWithdrawalLimit) {
 else if(amount>getBalance()){
     throw new Exception("Insufficient Balance");
 }
+else{
+    double balance = getBalance();
+    balance-=amount;
+    setBalance(balance);
+}
     }
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-return 1.0;
+double SI=0;
+double balance=getBalance();
+return SI=(balance*rate*years)/100;
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-return 1.0;
-    }
+        int n = times * years;
+        double balance=getBalance();
+        double finalAmount = balance * Math.pow(1 + rate / times, n);
 
+        return finalAmount;
+    }
 }
