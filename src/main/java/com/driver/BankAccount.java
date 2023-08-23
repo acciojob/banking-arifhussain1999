@@ -9,10 +9,6 @@ public class BankAccount {
     public BankAccount() {
     }
 
-    public BankAccount(String name, double balance) {
-        this.name = name;
-        this.balance = balance;
-    }
 
     public BankAccount(String name, double balance, double minBalance) {
 this.name=name;
@@ -29,18 +25,17 @@ this.minBalance=minBalance;
             throw new Exception("Account Number cannot be generated for the given sum.");
         }
 
-        StringBuilder accountNumber = new StringBuilder();
-        int remainingSum = sum;
-
-        for (int i = 0; i < digits; i++) {
-            int maxDigit = Math.min(9, remainingSum);
-            int digit = (i == digits - 1) ? remainingSum : (int) (Math.random() * (maxDigit + 1));
-
-            accountNumber.append(digit);
-            remainingSum -= digit;
+        StringBuilder number = new StringBuilder();
+        while(digits-->0){
+            if(sum>=9){
+                number.append('9');
+                sum-=9;
+            }else{
+                number.append(sum);
+                sum = 0;
+            }
         }
-
-        return accountNumber.toString();
+        return number.toString();
     }
 
     public void deposit(double amount) {

@@ -6,7 +6,7 @@ public class StudentAccount extends BankAccount{
 
     public StudentAccount(String name, double balance, String  institutionName) {
         //minimum balance is 0 by default
-super(name, balance);
+super(name, balance,0);
 this.institutionName=institutionName;
     }
 
@@ -18,17 +18,4 @@ this.institutionName=institutionName;
         this.institutionName = institutionName;
     }
 
-    public void deposit(double amount){
-        double balance=getBalance();
-        balance+=amount;
-        setBalance(balance);
-    }
-    public void withdraw(double amount){
-        if(amount>getBalance()){
-            System.out.print("Insufficient balance");
-        }
-        double balance=getBalance();
-        balance-=amount;
-        setBalance(balance);
-    }
 }
